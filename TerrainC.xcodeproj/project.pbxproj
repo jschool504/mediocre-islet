@@ -7,8 +7,28 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F99C5701577A68E003E1E9A /* ATRect.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F99C56F1577A68E003E1E9A /* ATRect.c */; };
 		3FEDBDFB156FDC5600CBAD38 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBDFA156FDC5600CBAD38 /* main.c */; };
 		3FEDBDFD156FDC5600CBAD38 /* TerrainC.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3FEDBDFC156FDC5600CBAD38 /* TerrainC.1 */; };
+		3FEDBE23156FDCAA00CBAD38 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FEDBE22156FDCAA00CBAD38 /* GLUT.framework */; };
+		3FEDBE25156FDCB000CBAD38 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FEDBE24156FDCB000CBAD38 /* OpenGL.framework */; };
+		3FEDBE3515700A1C00CBAD38 /* ATSize.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE3415700A1B00CBAD38 /* ATSize.c */; };
+		3FEDBE37157041CF00CBAD38 /* ATPoint.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE36157041CD00CBAD38 /* ATPoint.c */; };
+		3FEDBE39157042DC00CBAD38 /* ATPolygon.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE38157042DA00CBAD38 /* ATPolygon.c */; };
+		3FEDBE3B157049CB00CBAD38 /* ATVertex.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE3A157049CA00CBAD38 /* ATVertex.c */; };
+		3FEDBE3D157049FC00CBAD38 /* ATRotation.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE3C157049FB00CBAD38 /* ATRotation.c */; };
+		3FEDBE3F15704A3000CBAD38 /* ATCamera.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE3E15704A2E00CBAD38 /* ATCamera.c */; };
+		3FEDBE4115704B5F00CBAD38 /* AtmosphereProjection.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE4015704B5B00CBAD38 /* AtmosphereProjection.c */; };
+		3FEDBE441571721100CBAD38 /* Terrain.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE431571720F00CBAD38 /* Terrain.c */; };
+		3FEDBE471571776700CBAD38 /* Chunk.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE461571776500CBAD38 /* Chunk.c */; };
+		3FEDBE4B157182F800CBAD38 /* ATColor.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE4A157182F600CBAD38 /* ATColor.c */; };
+		3FEDBE4E157185AC00CBAD38 /* TerrainGenerator.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE4D157185A900CBAD38 /* TerrainGenerator.c */; };
+		3FEDBE501571891800CBAD38 /* ATAxis.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE4F1571891200CBAD38 /* ATAxis.c */; };
+		3FEDBE521571895600CBAD38 /* ATVector.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE511571895300CBAD38 /* ATVector.c */; };
+		3FF4D6E91573C03F009D796D /* ATUtils.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF4D6E81573C03F009D796D /* ATUtils.c */; };
+		3FF9D9741575A3D900F22CFE /* ATTexture.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D9731575A3D900F22CFE /* ATTexture.c */; };
+		3FF9D9781575A42F00F22CFE /* ATTexturedPolygon.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D9771575A42F00F22CFE /* ATTexturedPolygon.c */; };
+		3FF9D97F1576649F00F22CFE /* ATImage.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FF9D97E1576649F00F22CFE /* ATImage.c */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,9 +45,53 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		3F99C56E1577A5DD003E1E9A /* ATRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRect.h; sourceTree = "<group>"; };
+		3F99C56F1577A68E003E1E9A /* ATRect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATRect.c; sourceTree = "<group>"; };
 		3FEDBDF6156FDC5600CBAD38 /* TerrainC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TerrainC; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FEDBDFA156FDC5600CBAD38 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		3FEDBDFC156FDC5600CBAD38 /* TerrainC.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TerrainC.1; sourceTree = "<group>"; };
+		3FEDBE05156FDC9400CBAD38 /* ATAxis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAxis.h; sourceTree = "<group>"; };
+		3FEDBE07156FDC9400CBAD38 /* ATCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCamera.h; sourceTree = "<group>"; };
+		3FEDBE09156FDC9400CBAD38 /* ATColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATColor.h; sourceTree = "<group>"; };
+		3FEDBE0A156FDC9400CBAD38 /* ATFog.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ATFog.c; sourceTree = "<group>"; };
+		3FEDBE0B156FDC9400CBAD38 /* ATFog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATFog.h; sourceTree = "<group>"; };
+		3FEDBE0E156FDC9400CBAD38 /* Atmosphere.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Atmosphere.h; sourceTree = "<group>"; };
+		3FEDBE10156FDC9400CBAD38 /* AtmosphereProjection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AtmosphereProjection.h; sourceTree = "<group>"; };
+		3FEDBE12156FDC9400CBAD38 /* ATPoint.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPoint.h; sourceTree = "<group>"; };
+		3FEDBE14156FDC9400CBAD38 /* ATPolygon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATPolygon.h; sourceTree = "<group>"; };
+		3FEDBE16156FDC9400CBAD38 /* ATRotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRotation.h; sourceTree = "<group>"; };
+		3FEDBE18156FDC9400CBAD38 /* ATSize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATSize.h; sourceTree = "<group>"; };
+		3FEDBE1A156FDC9400CBAD38 /* ATTexture.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTexture.h; sourceTree = "<group>"; };
+		3FEDBE1C156FDC9400CBAD38 /* ATTexturedPolygon.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATTexturedPolygon.h; sourceTree = "<group>"; };
+		3FEDBE1E156FDC9400CBAD38 /* ATVector.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATVector.h; sourceTree = "<group>"; };
+		3FEDBE20156FDC9400CBAD38 /* ATVertex.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATVertex.h; sourceTree = "<group>"; };
+		3FEDBE21156FDC9400CBAD38 /* Font.bmp */ = {isa = PBXFileReference; lastKnownFileType = image.bmp; path = Font.bmp; sourceTree = "<group>"; };
+		3FEDBE22156FDCAA00CBAD38 /* GLUT.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GLUT.framework; path = System/Library/Frameworks/GLUT.framework; sourceTree = SDKROOT; };
+		3FEDBE24156FDCB000CBAD38 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		3FEDBE2F156FDD8300CBAD38 /* main.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
+		3FEDBE3415700A1B00CBAD38 /* ATSize.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATSize.c; sourceTree = "<group>"; };
+		3FEDBE36157041CD00CBAD38 /* ATPoint.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATPoint.c; sourceTree = "<group>"; };
+		3FEDBE38157042DA00CBAD38 /* ATPolygon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATPolygon.c; sourceTree = "<group>"; };
+		3FEDBE3A157049CA00CBAD38 /* ATVertex.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATVertex.c; sourceTree = "<group>"; };
+		3FEDBE3C157049FB00CBAD38 /* ATRotation.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATRotation.c; sourceTree = "<group>"; };
+		3FEDBE3E15704A2E00CBAD38 /* ATCamera.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATCamera.c; sourceTree = "<group>"; };
+		3FEDBE4015704B5B00CBAD38 /* AtmosphereProjection.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = AtmosphereProjection.c; sourceTree = "<group>"; };
+		3FEDBE42157141A300CBAD38 /* Terrain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Terrain.h; sourceTree = "<group>"; };
+		3FEDBE431571720F00CBAD38 /* Terrain.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Terrain.c; sourceTree = "<group>"; };
+		3FEDBE451571733600CBAD38 /* Chunk.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Chunk.h; sourceTree = "<group>"; };
+		3FEDBE461571776500CBAD38 /* Chunk.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Chunk.c; sourceTree = "<group>"; };
+		3FEDBE4915717E1B00CBAD38 /* ATMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATMath.h; sourceTree = "<group>"; };
+		3FEDBE4A157182F600CBAD38 /* ATColor.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATColor.c; sourceTree = "<group>"; };
+		3FEDBE4C157184B700CBAD38 /* TerrainGenerator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TerrainGenerator.h; sourceTree = "<group>"; };
+		3FEDBE4D157185A900CBAD38 /* TerrainGenerator.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = TerrainGenerator.c; sourceTree = "<group>"; };
+		3FEDBE4F1571891200CBAD38 /* ATAxis.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATAxis.c; sourceTree = "<group>"; };
+		3FEDBE511571895300CBAD38 /* ATVector.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATVector.c; sourceTree = "<group>"; };
+		3FF4D6E61573BFEC009D796D /* ATUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATUtils.h; sourceTree = "<group>"; };
+		3FF4D6E81573C03F009D796D /* ATUtils.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATUtils.c; sourceTree = "<group>"; };
+		3FF9D9731575A3D900F22CFE /* ATTexture.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATTexture.c; sourceTree = "<group>"; };
+		3FF9D9771575A42F00F22CFE /* ATTexturedPolygon.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATTexturedPolygon.c; sourceTree = "<group>"; };
+		3FF9D97D1576649400F22CFE /* ATImage.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATImage.h; sourceTree = "<group>"; };
+		3FF9D97E1576649F00F22CFE /* ATImage.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATImage.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +99,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3FEDBE25156FDCB000CBAD38 /* OpenGL.framework in Frameworks */,
+				3FEDBE23156FDCAA00CBAD38 /* GLUT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -46,6 +112,7 @@
 			children = (
 				3FEDBDF9156FDC5600CBAD38 /* TerrainC */,
 				3FEDBDF7156FDC5600CBAD38 /* Products */,
+				3FEDBE26156FDCC100CBAD38 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,10 +127,69 @@
 		3FEDBDF9156FDC5600CBAD38 /* TerrainC */ = {
 			isa = PBXGroup;
 			children = (
+				3FEDBE2F156FDD8300CBAD38 /* main.h */,
 				3FEDBDFA156FDC5600CBAD38 /* main.c */,
+				3FEDBE42157141A300CBAD38 /* Terrain.h */,
+				3FEDBE431571720F00CBAD38 /* Terrain.c */,
+				3FEDBE451571733600CBAD38 /* Chunk.h */,
+				3FEDBE461571776500CBAD38 /* Chunk.c */,
+				3FEDBE4C157184B700CBAD38 /* TerrainGenerator.h */,
+				3FEDBE4D157185A900CBAD38 /* TerrainGenerator.c */,
 				3FEDBDFC156FDC5600CBAD38 /* TerrainC.1 */,
+				3FEDBE03156FDC9400CBAD38 /* Atmosphere */,
 			);
 			path = TerrainC;
+			sourceTree = "<group>";
+		};
+		3FEDBE03156FDC9400CBAD38 /* Atmosphere */ = {
+			isa = PBXGroup;
+			children = (
+				3FEDBE0E156FDC9400CBAD38 /* Atmosphere.h */,
+				3FEDBE05156FDC9400CBAD38 /* ATAxis.h */,
+				3FEDBE4F1571891200CBAD38 /* ATAxis.c */,
+				3FEDBE07156FDC9400CBAD38 /* ATCamera.h */,
+				3FEDBE3E15704A2E00CBAD38 /* ATCamera.c */,
+				3FEDBE09156FDC9400CBAD38 /* ATColor.h */,
+				3FEDBE4A157182F600CBAD38 /* ATColor.c */,
+				3FEDBE0A156FDC9400CBAD38 /* ATFog.c */,
+				3FEDBE0B156FDC9400CBAD38 /* ATFog.h */,
+				3FEDBE10156FDC9400CBAD38 /* AtmosphereProjection.h */,
+				3FEDBE4015704B5B00CBAD38 /* AtmosphereProjection.c */,
+				3FEDBE12156FDC9400CBAD38 /* ATPoint.h */,
+				3FEDBE36157041CD00CBAD38 /* ATPoint.c */,
+				3FEDBE14156FDC9400CBAD38 /* ATPolygon.h */,
+				3FEDBE38157042DA00CBAD38 /* ATPolygon.c */,
+				3FEDBE16156FDC9400CBAD38 /* ATRotation.h */,
+				3FEDBE3C157049FB00CBAD38 /* ATRotation.c */,
+				3FEDBE18156FDC9400CBAD38 /* ATSize.h */,
+				3FEDBE3415700A1B00CBAD38 /* ATSize.c */,
+				3FEDBE1A156FDC9400CBAD38 /* ATTexture.h */,
+				3FF9D9731575A3D900F22CFE /* ATTexture.c */,
+				3FEDBE1C156FDC9400CBAD38 /* ATTexturedPolygon.h */,
+				3FF9D9771575A42F00F22CFE /* ATTexturedPolygon.c */,
+				3FEDBE1E156FDC9400CBAD38 /* ATVector.h */,
+				3FEDBE511571895300CBAD38 /* ATVector.c */,
+				3FEDBE20156FDC9400CBAD38 /* ATVertex.h */,
+				3FEDBE3A157049CA00CBAD38 /* ATVertex.c */,
+				3FEDBE21156FDC9400CBAD38 /* Font.bmp */,
+				3FEDBE4915717E1B00CBAD38 /* ATMath.h */,
+				3FF4D6E61573BFEC009D796D /* ATUtils.h */,
+				3FF4D6E81573C03F009D796D /* ATUtils.c */,
+				3FF9D97D1576649400F22CFE /* ATImage.h */,
+				3FF9D97E1576649F00F22CFE /* ATImage.c */,
+				3F99C56E1577A5DD003E1E9A /* ATRect.h */,
+				3F99C56F1577A68E003E1E9A /* ATRect.c */,
+			);
+			path = Atmosphere;
+			sourceTree = "<group>";
+		};
+		3FEDBE26156FDCC100CBAD38 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3FEDBE24156FDCB000CBAD38 /* OpenGL.framework */,
+				3FEDBE22156FDCAA00CBAD38 /* GLUT.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -118,6 +244,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				3FEDBDFB156FDC5600CBAD38 /* main.c in Sources */,
+				3FEDBE3515700A1C00CBAD38 /* ATSize.c in Sources */,
+				3FEDBE37157041CF00CBAD38 /* ATPoint.c in Sources */,
+				3FEDBE39157042DC00CBAD38 /* ATPolygon.c in Sources */,
+				3FEDBE3B157049CB00CBAD38 /* ATVertex.c in Sources */,
+				3FEDBE3D157049FC00CBAD38 /* ATRotation.c in Sources */,
+				3FEDBE3F15704A3000CBAD38 /* ATCamera.c in Sources */,
+				3FEDBE4115704B5F00CBAD38 /* AtmosphereProjection.c in Sources */,
+				3FEDBE441571721100CBAD38 /* Terrain.c in Sources */,
+				3FEDBE471571776700CBAD38 /* Chunk.c in Sources */,
+				3FEDBE4B157182F800CBAD38 /* ATColor.c in Sources */,
+				3FEDBE4E157185AC00CBAD38 /* TerrainGenerator.c in Sources */,
+				3FEDBE501571891800CBAD38 /* ATAxis.c in Sources */,
+				3FEDBE521571895600CBAD38 /* ATVector.c in Sources */,
+				3FF4D6E91573C03F009D796D /* ATUtils.c in Sources */,
+				3FF9D9741575A3D900F22CFE /* ATTexture.c in Sources */,
+				3FF9D9781575A42F00F22CFE /* ATTexturedPolygon.c in Sources */,
+				3FF9D97F1576649F00F22CFE /* ATImage.c in Sources */,
+				3F99C5701577A68E003E1E9A /* ATRect.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,7 +288,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -164,7 +308,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -172,14 +316,18 @@
 		3FEDBE01156FDC5600CBAD38 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.6;
 			};
 			name = Debug;
 		};
 		3FEDBE02156FDC5600CBAD38 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.6;
 			};
 			name = Release;
 		};
@@ -202,6 +350,7 @@
 				3FEDBE02156FDC5600CBAD38 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
