@@ -85,6 +85,7 @@ ATPoint at_get_active_point(ATTexture *texture, int index) {
 		printf("Invalid texture corner.");
 	}
 	
+    // TODO: Don't return a potentially uninitialized variable
 	return active_point;
 	
 }
@@ -117,5 +118,5 @@ void at_destroy_texture(ATTexture texture) {
 }
 
 void at_print_texture(ATTexture texture) {
-	printf("ID: %d Origin: (%f, %f) Size: (W: %f H: %f)\n", texture.id, texture.size.width, texture.size.height);
+	printf("ID: %d Origin: (%f, %f) Size: (W: %f H: %f)\n", texture.id, texture.active_rect.origin.x, texture.active_rect.origin.y, texture.size.width, texture.size.height);
 }

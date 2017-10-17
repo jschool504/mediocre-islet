@@ -21,13 +21,11 @@ ATImage at_load_image_type(char *path, int type) {
 		image = load_tga_data(path);
 	}
 	
+    // TODO: don't return potentially unitialized variable
 	return image;
 }
 
 ATImage load_tga_data(char *path) {
-	
-	char currentPath[1024];
-	//printf("%s", getcwd(currentPath, sizeof(currentPath)));
 	
 	ATImage *image = NULL;
 	FILE *filePtr = NULL;

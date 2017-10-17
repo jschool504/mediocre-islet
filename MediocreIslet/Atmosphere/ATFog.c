@@ -39,7 +39,7 @@ void at_unset_fog() {
 }
 
 char * at_string_fog(ATFog fog) {
-    
+    return "STUB";
 }
 
 void at_print_fog(ATFog fog) {

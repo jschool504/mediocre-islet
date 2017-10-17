@@ -10,7 +10,6 @@
 		3F199AB4177C00C400E2B1FC /* Zone.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F199AB3177C00C400E2B1FC /* Zone.c */; };
 		3F99C5701577A68E003E1E9A /* ATRect.c in Sources */ = {isa = PBXBuildFile; fileRef = 3F99C56F1577A68E003E1E9A /* ATRect.c */; };
 		3FEDBDFB156FDC5600CBAD38 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBDFA156FDC5600CBAD38 /* main.c */; };
-		3FEDBDFD156FDC5600CBAD38 /* TerrainC.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 3FEDBDFC156FDC5600CBAD38 /* TerrainC.1 */; };
 		3FEDBE23156FDCAA00CBAD38 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FEDBE22156FDCAA00CBAD38 /* GLUT.framework */; };
 		3FEDBE25156FDCB000CBAD38 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FEDBE24156FDCB000CBAD38 /* OpenGL.framework */; };
 		3FEDBE3515700A1C00CBAD38 /* ATSize.c in Sources */ = {isa = PBXBuildFile; fileRef = 3FEDBE3415700A1B00CBAD38 /* ATSize.c */; };
@@ -40,7 +39,6 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				3FEDBDFD156FDC5600CBAD38 /* TerrainC.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -51,9 +49,8 @@
 		3F199AB3177C00C400E2B1FC /* Zone.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Zone.c; sourceTree = "<group>"; };
 		3F99C56E1577A5DD003E1E9A /* ATRect.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATRect.h; sourceTree = "<group>"; };
 		3F99C56F1577A68E003E1E9A /* ATRect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ATRect.c; sourceTree = "<group>"; };
-		3FEDBDF6156FDC5600CBAD38 /* TerrainC */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = TerrainC; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FEDBDF6156FDC5600CBAD38 /* MediocreIslet */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = MediocreIslet; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FEDBDFA156FDC5600CBAD38 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
-		3FEDBDFC156FDC5600CBAD38 /* TerrainC.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = TerrainC.1; sourceTree = "<group>"; };
 		3FEDBE05156FDC9400CBAD38 /* ATAxis.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATAxis.h; sourceTree = "<group>"; };
 		3FEDBE07156FDC9400CBAD38 /* ATCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATCamera.h; sourceTree = "<group>"; };
 		3FEDBE09156FDC9400CBAD38 /* ATColor.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ATColor.h; sourceTree = "<group>"; };
@@ -115,7 +112,7 @@
 		3FEDBDEB156FDC5600CBAD38 = {
 			isa = PBXGroup;
 			children = (
-				3FEDBDF9156FDC5600CBAD38 /* TerrainC */,
+				3FEDBDF9156FDC5600CBAD38 /* MediocreIslet */,
 				3FEDBDF7156FDC5600CBAD38 /* Products */,
 				3FEDBE26156FDCC100CBAD38 /* Frameworks */,
 			);
@@ -124,12 +121,12 @@
 		3FEDBDF7156FDC5600CBAD38 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				3FEDBDF6156FDC5600CBAD38 /* TerrainC */,
+				3FEDBDF6156FDC5600CBAD38 /* MediocreIslet */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		3FEDBDF9156FDC5600CBAD38 /* TerrainC */ = {
+		3FEDBDF9156FDC5600CBAD38 /* MediocreIslet */ = {
 			isa = PBXGroup;
 			children = (
 				FE014E0D1F96724500CC8B2E /* TODO.md */,
@@ -143,10 +140,9 @@
 				3FEDBE461571776500CBAD38 /* Chunk.c */,
 				3FEDBE4C157184B700CBAD38 /* TerrainGenerator.h */,
 				3FEDBE4D157185A900CBAD38 /* TerrainGenerator.c */,
-				3FEDBDFC156FDC5600CBAD38 /* TerrainC.1 */,
 				3FEDBE03156FDC9400CBAD38 /* Atmosphere */,
 			);
-			path = TerrainC;
+			path = MediocreIslet;
 			sourceTree = "<group>";
 		};
 		3FEDBE03156FDC9400CBAD38 /* Atmosphere */ = {
@@ -203,9 +199,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3FEDBDF5156FDC5600CBAD38 /* TerrainC */ = {
+		3FEDBDF5156FDC5600CBAD38 /* MediocreIslet */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 3FEDBE00156FDC5600CBAD38 /* Build configuration list for PBXNativeTarget "TerrainC" */;
+			buildConfigurationList = 3FEDBE00156FDC5600CBAD38 /* Build configuration list for PBXNativeTarget "MediocreIslet" */;
 			buildPhases = (
 				3FEDBDF2156FDC5600CBAD38 /* Sources */,
 				3FEDBDF3156FDC5600CBAD38 /* Frameworks */,
@@ -215,9 +211,9 @@
 			);
 			dependencies = (
 			);
-			name = TerrainC;
+			name = MediocreIslet;
 			productName = TerrainC;
-			productReference = 3FEDBDF6156FDC5600CBAD38 /* TerrainC */;
+			productReference = 3FEDBDF6156FDC5600CBAD38 /* MediocreIslet */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -229,7 +225,7 @@
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = Home;
 			};
-			buildConfigurationList = 3FEDBDF0156FDC5600CBAD38 /* Build configuration list for PBXProject "TerrainC" */;
+			buildConfigurationList = 3FEDBDF0156FDC5600CBAD38 /* Build configuration list for PBXProject "MediocreIslet" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -241,7 +237,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				3FEDBDF5156FDC5600CBAD38 /* TerrainC */,
+				3FEDBDF5156FDC5600CBAD38 /* MediocreIslet */,
 			);
 		};
 /* End PBXProject section */
@@ -298,7 +294,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -318,7 +314,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -327,7 +323,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -337,7 +333,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 			};
@@ -346,7 +342,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3FEDBDF0156FDC5600CBAD38 /* Build configuration list for PBXProject "TerrainC" */ = {
+		3FEDBDF0156FDC5600CBAD38 /* Build configuration list for PBXProject "MediocreIslet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FEDBDFE156FDC5600CBAD38 /* Debug */,
@@ -355,7 +351,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		3FEDBE00156FDC5600CBAD38 /* Build configuration list for PBXNativeTarget "TerrainC" */ = {
+		3FEDBE00156FDC5600CBAD38 /* Build configuration list for PBXNativeTarget "MediocreIslet" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				3FEDBE01156FDC5600CBAD38 /* Debug */,
