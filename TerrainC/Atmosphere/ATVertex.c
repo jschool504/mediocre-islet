@@ -9,32 +9,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 
 #include "ATVertex.h"
 
 ATVertex at_create_vertex(float x, float y, float z) {
 	ATVertex vertex = {x, y, z};
-	return vertex;
-}
-
-ATVertex at_create_vertex_normals(float x, float y, float z, float nx, float ny) {
-	ATVertex vertex = at_create_vertex(x, y, z);
-	
-	vertex.nx = nx;
-	vertex.ny = ny;
-	
-	return vertex;
-}
-
-ATVertex at_create_vertex_texpoints(float x, float y, float z, float s, float t) {
-	ATVertex vertex = at_create_vertex(x, y, z);
-	
-	vertex.s = s;
-	vertex.t = t;
-	
 	return vertex;
 }
 

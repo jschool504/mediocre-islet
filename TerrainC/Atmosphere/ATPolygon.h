@@ -6,12 +6,12 @@
 //  Copyright (c) 2012 Home. All rights reserved.
 //
 
+#ifndef TerrainProject_ATPolygon_h
+#define  TerrainProject_ATPolygon_h
+
 #include "ATPoint.h"
 #include "ATColor.h"
 #include <stdbool.h>
-
-#ifndef TerrainProject_ATPolygon_h
-#define  TerrainProject_ATPolygon_h
 
 // Dynamic shape. ATPolygons can hold an array of vertices and draw them
 typedef struct {

@@ -9,9 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 
 #include "ATPoint.h"
 
@@ -44,4 +42,13 @@ char * at_string_point(ATPoint point) {
 
 void at_print_point(ATPoint point) {
 	printf("%s\n", at_string_point(point));
+}
+
+// Other
+
+bool at_compare_points(ATPoint point1, ATPoint point2) {
+	if (point1.x == point2.x && point1.y == point2.y) {
+		return true;
+	}
+	return false;
 }

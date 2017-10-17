@@ -10,9 +10,7 @@
 #include <stdlib.h>
 #include "ATColor.h"
 
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 
 ATColor at_create_color(float red, float green, float blue, float alpha) {
 	ATColor color = {red, green, blue, alpha};
@@ -42,7 +40,7 @@ ATColor at_multiply_color(ATColor color, ATColor color2) {
 }
 
 char * at_string_color(ATColor color) {
-	char *output = malloc(sizeof(char) * 100);
+	char *output = malloc(sizeof("a") * 100);
 	sprintf(output, "Color: (R: %f G: %f B: %f A: %f)", color.r, color.g, color.b, color.a);
 	return output;
 }

@@ -9,9 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 #include "ATPolygon.h"
 
 ATPolygon at_create_polygon(ATPoint origin, int numberOfVerts, ATPoint *points, ATColor *colors) {

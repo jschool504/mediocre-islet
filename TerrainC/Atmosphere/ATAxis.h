@@ -3,9 +3,7 @@
 #include "ATColor.h"
 
 #include <stdio.h>
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 
 #ifndef TerrainC_ATAxis_h
 #define TerrainC_ATAxis_h

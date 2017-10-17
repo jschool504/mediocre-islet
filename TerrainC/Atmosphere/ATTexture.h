@@ -6,15 +6,6 @@
 //  Copyright (c) 2012 Home. All rights reserved.
 //
 
-#include <stdbool.h>
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
-
-#include "ATPoint.h"
-#include "ATSize.h"
-#include "ATRect.h"
-
 #define AT_CORNER_LOWER_LEFT 0
 #define AT_CORNER_UPPER_LEFT 1
 #define AT_CORNER_UPPER_RIGHT 2
@@ -22,6 +13,12 @@
 
 #ifndef TerrainProject_ATTexture_h
 #define TerrainProject_ATTexture_h
+
+#include <stdbool.h>
+
+#include "ATPoint.h"
+#include "ATSize.h"
+#include "ATRect.h"
 
 typedef struct {
 	

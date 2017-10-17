@@ -28,21 +28,25 @@ Chunk create_chunk(ATPoint location, int map_size, int chunk_size, int seed) {
 	chunk._vertex_count = chunk_size * chunk_size;
 	
 	chunk._data_calculated = 0;
-	chunk._generator = create_t_generator(chunk.seed, chunk.map_size);
+	//at_print_point(chunk.location);
+	//chunk._generator = create_t_generator(chunk.seed, chunk.map_size);
 	
 	// Some default cutoffs
-	chunk.max_slope_grass = 0.7;
+	chunk.max_slope_grass = 0.8;
 	chunk.max_height_grass = 50;
 	chunk.max_slope_dirt = 0.9;
+	chunk.max_slope_water = 0.1;
 	chunk.max_slope_rock = MAXFLOAT;
 	
 	return chunk;
 }
 
+float get_height_at_point(Chunk chunk, int x, int y) {
+    return chunk._vertices[x + (y * chunk.chunk_size)].y;
+}
+
 int private_size(Chunk chunk) {
-	
 	return chunk.chunk_size + 1;
-	
 }
 
 void init_data(Chunk *chunk) {
@@ -55,19 +59,20 @@ void init_data(Chunk *chunk) {
 	for (int x = 0; x < private_size(*chunk); x++) {
 		for (int y = 0; y < private_size(*chunk); y++) {
 			
-			ATPoint point = at_create_point(chunk->location.x + x, chunk->location.y + y);
+			ATPoint point = at_create_point(chunk->location.x + x, chunk->location.y + y); //Pass into zonecontroller
 			
-			ATVertex vertex = at_create_vertex(point.x, height_at_point(chunk->_generator, point), point.y);
+			//printf("%d, %d\n", x, y);
+			//at_print_point(chunk->location);
+			
+			ATVertex vertex = at_create_vertex(point.x, height_at_point(*chunk->_generator, point), point.y);
 			chunk->_vertices[x + (y * private_size(*chunk))] = vertex;
 			
 			float localHeights[5] = {
-				
 				vertex.y,
-				height_at_point(chunk->_generator, at_create_point(vertex.x - 1, vertex.z)),
-				height_at_point(chunk->_generator, at_create_point(vertex.x, vertex.z - 1)),
-				height_at_point(chunk->_generator, at_create_point(vertex.x + 1, vertex.z)),
-				height_at_point(chunk->_generator, at_create_point(vertex.x, vertex.z + 1)),
-				
+				height_at_point(*chunk->_generator, at_create_point(vertex.x - 1, vertex.z)),
+				height_at_point(*chunk->_generator, at_create_point(vertex.x, vertex.z - 1)),
+				height_at_point(*chunk->_generator, at_create_point(vertex.x + 1, vertex.z)),
+				height_at_point(*chunk->_generator, at_create_point(vertex.x, vertex.z + 1))
 			};
 			
 			float lightSlope = 1 - (localHeights[1] - localHeights[0]);
@@ -76,31 +81,46 @@ void init_data(Chunk *chunk) {
 				lightSlope = MIN_LIGHT;
 			}
 			
-			chunk->_lighting[x + (y * private_size(*chunk))] = lightSlope;
-			
 			qsort(localHeights, 5, sizeof(float), compare_elements);
+			
+			chunk->_lighting[x + (y * private_size(*chunk))] = lightSlope; //Get light slope
 			
 			float slope = localHeights[4] - localHeights[0];
 			
-			if (slope < chunk->max_slope_grass) {
+			Zone zone = zone_for_point(*chunk->_generator, point);
+			
+			if (slope == zone.slope_attributes[WATER_INDEX] && vertex.y <= zone.height_attributes[WATER_INDEX]) {
 				
-				if (vertex.y > chunk->max_height_grass) {
-					chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_SNOW;
-				} else {
+				chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_WATER; //Get material
+			
+			} else if (slope < zone.slope_attributes[GRASS_INDEX] && vertex.y <= zone.height_attributes[GRASS_INDEX]) {
+				
+				if ((zone.slope_attributes[GRASS_INDEX] + slope) / 2) {
 					chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_GRASS;
+				} else {
+					chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_DIRT;
 				}
 				
-			} else if (slope < chunk->max_slope_dirt) {
+			} else if (slope < zone.slope_attributes[DIRT_INDEX] && vertex.y <= zone.height_attributes[DIRT_INDEX]) {
 				
-				chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_DIRT;
+				if ((zone.slope_attributes[DIRT_INDEX] + slope) / 2) {
+					chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_DIRT;
+				} else {
+					chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_ROCK;
+				}
 				
-			} else if (slope < chunk->max_slope_rock) {
+            } else if (slope < zone.slope_attributes[SNOW_INDEX] && vertex.y < zone.height_attributes[SNOW_INDEX]) {
+                
+                chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_SNOW;
+                
+            } else if (slope < zone.slope_attributes[ROCK_INDEX] && vertex.y <= zone.height_attributes[ROCK_INDEX]) {
 				
 				chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_ROCK;
 				
 			} else {
 				
 				chunk->_materials[x + (y * private_size(*chunk))] = MATERIAL_ERROR;
+				
 			}
 			
 		}
@@ -130,19 +150,6 @@ void draw_chunk(Chunk *chunk) {
 		init_data(chunk);
 	}
 	
-	/*
-	// This magical bit of code gives a random (but deterministic) color every time it's run
-	srandom(chunk.location.x);
-	float r = random() % 10;
-	r = r / 10;
-	srandom(chunk.location.x * chunk.location.y + random());
-	float g = random() % 10;
-	g = g / 10;
-	srandom(chunk.location.x + chunk.location.y + random());
-	float b = random() % 10;
-	b = b / 10;
-	*/
-	
 	at_bind_texture(chunk->texture);
 	
 	for (int x = 0; x < private_size(*chunk) - 1; x++) {
@@ -151,40 +158,42 @@ void draw_chunk(Chunk *chunk) {
 		for (int y = 0; y < private_size(*chunk) - 1; y++) {
 			
 			ATVertex vertex[4] = {
-				
 				chunk->_vertices[x + (y * private_size(*chunk))],
 				chunk->_vertices[(x + 1) + (y * private_size(*chunk))],
 				chunk->_vertices[x + ((y + 1) * private_size(*chunk))],
 				chunk->_vertices[(x + 1) + ((y + 1) * private_size(*chunk))]
-				
 			};
 			
 			ATColor lighting[4] = {
-				
 				at_create_color_from_float(chunk->_lighting[x + (y * private_size(*chunk))], 1.0),
 				at_create_color_from_float(chunk->_lighting[(x + 1) + (y * private_size(*chunk))], 1.0),
 				at_create_color_from_float(chunk->_lighting[x + ((y + 1) * private_size(*chunk))], 1.0),
 				at_create_color_from_float(chunk->_lighting[(x + 1) + ((y + 1) * private_size(*chunk))], 1.0)
-				
 			};
+			
+			Zone zone = zone_for_point(*chunk->_generator, at_create_point(chunk->location.x + x, chunk->location.y + y));
 			
 			at_set_active_rect(&chunk->texture, chunk->rock_texture_rect);
 			
 			if (chunk->_materials[x + (y * private_size(*chunk))] == MATERIAL_GRASS) {
-				at_set_color(at_multiply_color(GRASS_COLOR, lighting[0]));
+				at_set_color(at_multiply_color(zone.color_attributes[GRASS_INDEX], lighting[0]));
 				at_set_active_rect(&chunk->texture, chunk->grass_texture_rect);
 				
 			} else if (chunk->_materials[x + (y * private_size(*chunk))] == MATERIAL_DIRT) {
-				at_set_color(at_multiply_color(DIRT_COLOR, lighting[0]));
+				at_set_color(at_multiply_color(zone.color_attributes[DIRT_INDEX], lighting[0]));
 				at_set_active_rect(&chunk->texture, chunk->dirt_texture_rect);
 				
 			} else if (chunk->_materials[x + (y * private_size(*chunk))] == MATERIAL_ROCK) {
-				at_set_color(at_multiply_color(ROCK_COLOR, lighting[0]));
+				at_set_color(at_multiply_color(zone.color_attributes[ROCK_INDEX], lighting[0]));
 				at_set_active_rect(&chunk->texture, chunk->rock_texture_rect);
 				
 			} else if (chunk->_materials[x + (y * private_size(*chunk))] == MATERIAL_SNOW) {
-				at_set_color(at_multiply_color(SNOW_COLOR, lighting[0]));
+				at_set_color(at_multiply_color(zone.color_attributes[SNOW_INDEX], lighting[0]));
 				at_set_active_rect(&chunk->texture, chunk->snow_texture_rect);
+				
+			} else if (chunk->_materials[x + (y* private_size(*chunk))] == MATERIAL_WATER) {
+				at_set_color(at_multiply_color(zone.color_attributes[WATER_INDEX], lighting[0]));
+				at_set_active_rect(&chunk->texture, chunk->rock_texture_rect);
 				
 			} else {
 				at_set_color(at_multiply_color(ERROR_COLOR, lighting[0]));
@@ -193,35 +202,16 @@ void draw_chunk(Chunk *chunk) {
 			}
 			
 			at_set_active_point(&chunk->texture, AT_CORNER_LOWER_LEFT);
-			//glTexCoord2f(0.0, 0.0);
 			at_draw_vertex(vertex[0]);
 			
 			at_set_active_point(&chunk->texture, AT_CORNER_UPPER_LEFT);
-			//glTexCoord2f(1.0, 0.0);
 			at_draw_vertex(vertex[1]);
 			
 			at_set_active_point(&chunk->texture, AT_CORNER_LOWER_RIGHT);
-			//glTexCoord2f(0.0, 0.25);
 			at_draw_vertex(vertex[2]);
 			
 			at_set_active_point(&chunk->texture, AT_CORNER_UPPER_RIGHT);
-			//glTexCoord2f(1.0, 0.25);
 			at_draw_vertex(vertex[3]);
-			
-			
-			//printf("\n\n");
-			
-			/*
-			if (vertex2.x == 0) {
-				printf("%d\n", x + (y * private_size(chunk)));
-				at_print_vertex(vertex);
-				printf("\n");
-			}
-			*/
-			
-			//at_print_vertex(chunk._vertices[x + (y * private_size(chunk))]);
-			//at_print_vertex(chunk._vertices[(x + 1) + (y * private_size(chunk))]);
-			//printf("\n");
 		}
 		glEnd();
 		

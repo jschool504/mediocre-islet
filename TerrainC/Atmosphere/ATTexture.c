@@ -7,6 +7,7 @@
 //
 
 #include <stdio.h>
+#include <GLUT/glut.h>
 #include "ATTexture.h"
 
 // Here we get in raw texture data, do all the OpenGL stuff needed to create a texture and stuff the size and position and id into an ATTexture for safekeeping.

@@ -12,14 +12,14 @@
 #define TerrainProject_ATFog_h
 
 typedef struct {
-	
-	float start_distance;
-	float end_distance;
-	float density;
-	ATColor color;
-	int mode;
-	int quality;
-	
+    
+    float start_distance;
+    float end_distance;
+    float density;
+    ATColor color;
+    int mode;
+    int quality;
+    
 } ATFog;
 
 #endif
@@ -29,3 +29,4 @@ void at_set_fog(ATFog fog);
 void at_unset_fog();
 char * at_string_fog(ATFog fog);
 void at_print_fog(ATFog fog);
+

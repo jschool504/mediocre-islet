@@ -6,11 +6,12 @@
 //  Copyright (c) 2012 Home. All rights reserved.
 //
 
-
-#define ATOriginPoint at_create_point(0, 0)
-
 #ifndef TerrainProject_ATPoint_h
 #define TerrainProject_ATPoint_h
+
+#include <stdbool.h>
+
+#define ATOriginPoint at_create_point(0, 0)
 
 // This is a 2D point. Used in 2D shapes
 typedef struct ATPoint {
@@ -30,6 +31,9 @@ ATPoint at_create_point(float x, float y);
 
 // Drawing
 void at_draw_point(ATPoint point, int drawMode);
+
+// Other
+bool at_compare_points(ATPoint point1, ATPoint point2);
 
 // Debugging
 char * at_string_point(ATPoint point);

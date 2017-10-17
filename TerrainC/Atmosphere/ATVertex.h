@@ -21,20 +21,11 @@ typedef struct ATVertex {
 	float y;
 	float z;
 	
-	float nx;
-	float ny;
-	float nz;
-	
-	float s;
-	float t;
-	
 } ATVertex;
 
 #endif
 
 ATVertex at_create_vertex(float x, float y, float z);
-ATVertex at_create_vertex_normals(float x, float y, float z, float nx, float ny);
-ATVertex at_create_vertex_texpoints(float x, float y, float z, float s, float t);
 
 void at_draw_vertex(ATVertex vertex);
 void at_draw_colored_vertex(ATVertex vertex, ATColor color);

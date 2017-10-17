@@ -13,17 +13,9 @@
 
 #include <GLUT/glut.h>
 
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
-
 int main(int argc, char * argv[]) {
-	
-	//app_struct.glut = at_create_glut("Terrain", ATSize512, draw, reshape, idle, argc, argv);
-	//app_struct.glut.key_down_function = key_pressed;
-	
-	app_struct.camera = at_create_camera(at_create_vertex(TERRAIN_SIZE / 2, 100, TERRAIN_SIZE / 2), at_create_rotation(0, 0, 0));
-	//app_struct.camera = at_create_camera(at_create_vertex(0, 0, 4), at_create_rotation(0, 0, 0));
+	app_struct.camera = at_create_camera(at_create_vertex(TERRAIN_SIZE / 2, 150, TERRAIN_SIZE / 2), at_create_rotation(-45, 0, 0));
+    app_struct.lock_camera_to_ground = false;
 	
 	app_struct.axis[0] = at_create_axis(ATVectorX, 1000, ATRedColor);
 	app_struct.axis[1] = at_create_axis(ATVectorY, 1000, ATGreenColor);
@@ -33,7 +25,7 @@ int main(int argc, char * argv[]) {
 	
 	glutInit(&argc, argv);
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-	glutInitWindowSize(512, 512);
+	glutInitWindowSize(1920, 1080);
 	glutCreateWindow("Terrain C");
 	
 	glutDisplayFunc(draw);
@@ -48,7 +40,8 @@ int main(int argc, char * argv[]) {
 
 void init_gl() {
 	
-	glClearColor(0, 0, 0, 0.0);
+    ATColor sky_color = ATGrayColor;
+	glClearColor(sky_color.r, sky_color.g, sky_color.b, sky_color.a);
 	glClearDepth(1.0);
 	
 	glDepthFunc(GL_LESS);
@@ -103,8 +96,8 @@ void draw() {
 		
 		app_struct.terrain = create_terrain(ATOriginPoint, TERRAIN_SIZE, CHUNK_SIZE, VIEW_RANGE, texture, rects, 1);
 		app_struct.terrain.draw_wireframe = false;
-		
-		app_struct.view_range = VIEW_RANGE;
+        
+        set_view_range(VIEW_RANGE);
 		app_struct.gl_inited = true;
 	}
 	
@@ -120,26 +113,42 @@ void draw() {
 	clock_t startTime = clock();
 	
 	app_struct.terrain.view_range = app_struct.view_range;
-	draw_terrain(&app_struct.terrain, at_convert_vertex(app_struct.camera.location));
+	draw_terrain(&app_struct.terrain, app_struct.camera);
 	
 	clock_t endTime = clock();
 	float dTime = (1.0 / difftime(endTime, startTime)) * (CLOCKS_PER_SEC * 10);
 	
-	char *output = malloc(sizeof(char) * 100);
-	sprintf(output, "FPS: %0.1f View Range: %d\n", dTime, app_struct.view_range);
-	at_draw_string(0, 0, output);
-	free(output);
+	char output[1000];
+    Zone current_zone = zone_for_point(app_struct.terrain.generator, at_create_point(app_struct.camera.location.x, app_struct.camera.location.z));
+
+    int rotation = (int)app_struct.camera.rotation.y % 360;
+    if (rotation < 0) {
+        rotation += 360;
+    }
+
+    sprintf(output,
+            "FPS: %0.1f View Range: %d\nLocation: (X: %f Y: %f Z: %f)\nRotation: %d\nZone %s\nMax Grass Height: %f | Max Dirt Height: %f",
+            dTime,
+            app_struct.view_range, app_struct.camera.location.x, app_struct.camera.location.y, app_struct.camera.location.z,
+            rotation,
+            at_string_point(current_zone.area.origin),
+            current_zone.height_attributes[GRASS_INDEX], current_zone.height_attributes[DIRT_INDEX]);
+	at_draw_string(0, 1 - LINE_HEIGHT * 1, output);
 	
 	at_unset_camera();
 	
 	glutSwapBuffers();
 }
 
+void set_view_range(int view_range) {
+    app_struct.view_range = view_range;
+    ATFog fog = at_create_fog(view_range - 40, view_range - 15, 0.8, ATGrayColor, GL_LINEAR, GL_DONT_CARE);
+    at_set_fog(fog);
+}
+
 // Make sure the next frame is drawn as soon as GLUT is idle
 void idle() {
-	
 	glutPostRedisplay();
-	
 }
 
 void key_pressed(unsigned char key, int x, int y) {
@@ -215,11 +224,11 @@ void key_pressed(unsigned char key, int x, int y) {
 	}
 	
 	if (key == '+') {
-		app_struct.view_range+=16;
+        set_view_range(app_struct.view_range + 10);
 	}
 	
 	if (key == '_') {
-		app_struct.view_range-=16;
+		set_view_range(app_struct.view_range - 10);
 	}
 	
 	if (key == 'C') {
@@ -245,5 +254,13 @@ void key_pressed(unsigned char key, int x, int y) {
 	if (key == 'Q') {
 		exit(0);
 	}
-	
+    
+    if (key == 'V') {
+        app_struct.lock_camera_to_ground = !app_struct.lock_camera_to_ground;
+    }
+    
+    if (app_struct.lock_camera_to_ground) {
+        float height_at_location = height_for_coord(app_struct.terrain, at_create_point(app_struct.camera.location.x, app_struct.camera.location.z));
+        app_struct.camera.location.y = POV_HEIGHT + height_at_location;
+    }
 }

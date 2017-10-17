@@ -11,12 +11,12 @@
 #include <math.h>
 #include <stdbool.h>
 
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 
 #ifndef TerrainC_Terrain_h
 #define TerrainC_Terrain_h
+
+#define FOV 50
 
 typedef struct {
 	
@@ -36,6 +36,8 @@ typedef struct {
 	ATRect snow_texture_rect;
 	ATRect error_texture_rect;
 	
+	TerrainGenerator generator;
+	
 	// Private
 	unsigned int number_of_chunks; // number of chunks
 	unsigned int _chunks_per_side; // number of chunks on one side of the map
@@ -49,5 +51,6 @@ typedef struct {
 Terrain create_terrain(ATPoint origin, unsigned int map_size, unsigned int chunk_size, unsigned int view_range, ATTexture texture, ATRect texture_rects[5], int seed);
 void destroy_terrain(Terrain terrain);
 void init_chunks(Terrain *terrain);
+float height_for_coord(Terrain terrain, ATPoint locations);
 Chunk chunk_for_coord(Terrain terrain, int x, int y);
-void draw_terrain(Terrain *terrain, ATPoint display_point);
+void draw_terrain(Terrain *terrain, ATCamera camera);

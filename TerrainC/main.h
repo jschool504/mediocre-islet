@@ -6,16 +6,17 @@
 //  Copyright (c) 2012 Home. All rights reserved.
 //
 
-#include "Atmosphere.h"
+#include "Atmosphere/Atmosphere.h"
 #include "Terrain.h"
 #include <stdbool.h>
 
-#define MOV_SPEED 1
-#define ROT_SPEED 3
+#define MOV_SPEED 2
+#define ROT_SPEED 4
 
-#define TERRAIN_SIZE 10240
-#define CHUNK_SIZE 32
-#define VIEW_RANGE 128
+#define TERRAIN_SIZE 5000
+#define CHUNK_SIZE 10
+#define VIEW_RANGE 150
+#define POV_HEIGHT 5
 
 #define LIGHTING_SOFTNESS 25
 
@@ -34,6 +35,7 @@ typedef struct {
 	
 	int view_range;
 	
+    bool lock_camera_to_ground;
 	bool gl_inited;
 	
 } AppStruct;
@@ -45,6 +47,7 @@ AppStruct app_struct;
 void init_glut();
 void init_gl();
 void reshape(int width, int height);
+void set_view_range(int view_range);
 void draw();
 void idle();
 void key_pressed(unsigned char key, int x, int y);

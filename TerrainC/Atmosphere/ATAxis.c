@@ -1,8 +1,6 @@
 #include "ATAxis.h"
 
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 
 ATAxis at_create_axis(ATVector direction, float length, ATColor color) {
 	ATAxis axis = {direction, length, color};

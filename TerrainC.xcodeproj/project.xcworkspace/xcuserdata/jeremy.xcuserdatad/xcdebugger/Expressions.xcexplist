@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VariablesViewState
+   version = "1.0">
+   <ContextStates>
+      <ContextState
+         contextName = "init_data:Chunk.c">
+      </ContextState>
+      <ContextState
+         contextName = "init_vertices:Chunk.c">
+      </ContextState>
+      <ContextState
+         contextName = "draw_terrain:Terrain.c">
+      </ContextState>
+      <ContextState
+         contextName = "draw_chunk:Chunk.c">
+      </ContextState>
+      <ContextState
+         contextName = "at_draw_axis:ATAxis.c">
+      </ContextState>
+      <ContextState
+         contextName = "draw:main.c">
+      </ContextState>
+      <ContextState
+         contextName = "at_string_point:ATPoint.c">
+      </ContextState>
+   </ContextStates>
+</VariablesViewState>

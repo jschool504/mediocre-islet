@@ -9,9 +9,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 
 #include "ATVector.h"
 

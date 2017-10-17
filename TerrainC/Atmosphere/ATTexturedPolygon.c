@@ -7,6 +7,7 @@
 //
 
 #include <stdio.h>
+#include <GLUT/glut.h>
 #include "ATTexturedPolygon.h"
 
 ATTexturedPolygon at_create_textured_polygon(ATPoint origin, int numberOfVerts, ATPoint *points, ATTexture texture, ATPoint *texture_points) {

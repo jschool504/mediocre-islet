@@ -29,6 +29,8 @@ Terrain create_terrain(ATPoint origin, unsigned int map_size, unsigned int chunk
 	terrain.rock_texture_rect = texture_rects[2];
 	terrain.snow_texture_rect = texture_rects[3];
 	
+	terrain.generator = create_t_generator(terrain.seed, terrain.map_size);
+	
 	return terrain;
 }
 
@@ -36,6 +38,15 @@ void destroy_terrain(Terrain terrain) {
 	
 	free(terrain._chunks);
 	
+}
+
+float height_for_coord(Terrain terrain, ATPoint coord) {
+    float x_percent = coord.x / terrain.map_size;
+    float y_percent = coord.y / terrain.map_size;
+    int x_chunk = x_percent * terrain._chunks_per_side;
+    int y_chunk = y_percent * terrain._chunks_per_side;
+    Chunk chunk = chunk_for_coord(terrain, x_chunk, y_chunk);
+    return get_height_at_point(chunk, (int)coord.x - (int)chunk.location.x, (int)coord.y - (int)chunk.location.y);
 }
 
 Chunk chunk_for_coord(Terrain terrain, int x, int y) {
@@ -50,6 +61,7 @@ void init_chunks(Terrain *terrain) {
 		for (int y = 0; y < terrain->_chunks_per_side; y++) {
 			
 			Chunk chunk = create_chunk(at_create_point(x * terrain->chunk_size, y * terrain->chunk_size), terrain->map_size, terrain->chunk_size, terrain->seed);
+			chunk._generator = &terrain->generator;
 			chunk.lighting_softness = terrain->lighting_softness;
 			
 			chunk.texture = terrain->terrain_texture;
@@ -67,7 +79,7 @@ void init_chunks(Terrain *terrain) {
 	terrain->_chunks_calculated = true;
 }
 
-void draw_terrain(Terrain *terrain, ATPoint display_point) {
+void draw_terrain(Terrain *terrain, ATCamera camera) {
 	
 	if (terrain->_chunks_calculated == false) {
 		init_chunks(terrain);
@@ -78,14 +90,43 @@ void draw_terrain(Terrain *terrain, ATPoint display_point) {
 	}
 	
 	for (int i = 0; i < terrain->number_of_chunks; i++) {
+        
+        /** This works don't touch it >:( **/
+        
 		Chunk *chunk = &terrain->_chunks[i];
-		float distance = DistanceToPoint(display_point, center_chunk(*chunk));
-		
-		if (distance < terrain->view_range) {
-			
-			draw_chunk(chunk);
-			
-		}
+        ATPoint loc = at_create_point(camera.location.x, camera.location.z);
+        int rotation = (int)camera.rotation.y % 360;
+        if (rotation < 0) {
+            rotation += 360;
+        }
+
+        ATPoint chunk_point = center_chunk(*chunk);
+        int dist = abs((int)DistanceToPoint(loc, chunk_point));
+        
+        float diff_x = loc.x - chunk_point.x;
+        float diff_y = loc.y - chunk_point.y;
+        
+        float chunk_angle = atan2f(diff_x, diff_y);
+        chunk_angle *= 180 / M_PI;
+        if (chunk_angle < 0) {
+            chunk_angle += 360;
+        }
+        
+        if (rotation < FOV && chunk_angle>(360-FOV)) {
+            chunk_angle -= 360;
+        }
+        
+        if (rotation > (360-FOV) && chunk_angle < FOV) {
+            chunk_angle += 360;
+        }
+        
+        int diff = rotation - (int)chunk_angle;
+        
+        if (diff < FOV && diff > -FOV && dist < terrain->view_range) {
+            draw_chunk(chunk);
+        }
+        
+        /** end **/
 	}
 	
 	if (terrain->draw_wireframe == true) {

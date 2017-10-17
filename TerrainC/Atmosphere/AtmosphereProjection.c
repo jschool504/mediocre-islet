@@ -8,9 +8,7 @@
 
 #include "AtmosphereProjection.h"
 #include "ATRotation.h"
-#include <OpenGL/OpenGL.h>
-#include <OpenGL/glu.h>
-#include <OpenGL/gl.h>
+#include <GLUT/glut.h>
 
 void atmosphere_ortho_start(float left, float right, float bottom, float top, float near, float far) {
 	
